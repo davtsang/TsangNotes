@@ -1,0 +1,10 @@
+*.aux
+*.idx
+*.log
+*.out
+*.gz
+.DS_Store
+*.toc
+*~
+.ipynb_checkpoints
+.pyc

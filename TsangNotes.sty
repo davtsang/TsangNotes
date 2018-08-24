@@ -130,11 +130,6 @@
 \RequirePackage{mathtools, bm}
 \RequirePackage{amsfonts}
 
-\def\bv{ {\bm v} }
-\def\be{ {\bm e} }
-\def\bp{ {\bm p} }
-
-
 \newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
 \newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
 
@@ -242,4 +237,7 @@
   {\bgroup\textcolor{black}{\place@tag}\egroup}% <replace>
   {}{}% <success><failure>
 \makeatother
+
+\setcounter{secnumdepth}{2}
+
 
