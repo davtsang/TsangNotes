@@ -1,4 +1,4 @@
-# Dave's LaTeX Class Notes Template
+# Dave's LaTeX Class Notes Template v1.0
 
 David Tsang - D.Tsang@soton.ac.uk
 
