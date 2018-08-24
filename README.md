@@ -1,6 +1,6 @@
 # Dave's LaTeX Class Notes Template v1.0
 
-David Tsang - D.Tsang@soton.ac.uk
+David Tsang University of Southampton/University of Bath - D.Tsang@soton.ac.uk
 
 2018/08/24
 
