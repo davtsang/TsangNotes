@@ -28,8 +28,7 @@ Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 All other options will be passed to tufte-book (e.g. the ones for UK notes are usually "a4ppaer, openany, notoc")
 
 If no TsangNotes class specific options are set, it will default to the "full" behaviour. As an alternative to the class options (for command line options and makefiles) you can set the definitions
-
-      	\def\student{}  in order to set skeletal notes on
+	\def\student{}  in order to set skeletal notes on
 
 	\def\accessible{} in order to set accessible fonts on
 
