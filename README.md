@@ -60,6 +60,18 @@ Note that the class options override the \defs above  if they conflict.
        HAVE THE SAME BOUNDING BOXES/SIZE in order for the skeletal version
        to maintain the same layout as the full version. 
 
+## tufte-book class commands
+	
+	\marginnote[OFFSET]{...} places a note in the margin with a particular vertical offset
+	
+	\sidenote[OFFSET]{...} places a sidenote with a corresponding label in the margin (replaces \footnote{})
+	
+	\begin{marginfigure}...\end{marginfigure} places a figure environment in the margin
+	
+	\begin{figure}...\end{figure} places a figure environment that spans the main text
+	
+	\begin{figure*}...\end{figure*} places a figure environment that spans the page
+
 # Boxes
 
 Several TikZ boxes are provided for displaying examples, exercises and
