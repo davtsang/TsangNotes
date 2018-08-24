@@ -1,0 +1,245 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{TsangNotes}[2018/08/24 Tsang Notes Class Macros]
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\RequirePackage{microtype} % Improves character and word spacing
+
+\RequirePackage{booktabs} % Better horizontal rules in tables
+
+\RequirePackage{graphicx} % Needed to insert images into the document
+
+%\graphicspath{{figures/}} % Sets the default location of pictures
+\RequirePackage{lipsum} %Filler text package, only needed for typesetting examples
+\RequirePackage{enumitem} %some nicer features for enumerated lists
+\RequirePackage{subfig} %needed to horizontally stack figures
+\RequirePackage{cancel} %packaged needed for cancelto arrows
+\RequirePackage{etoolbox}
+
+
+%%%%%%%%%%%%%%%
+% This is where we switch to skeletal
+%%%%%%%%%%%%%%%
+\RequirePackage{ifthen} % used for switching between skeletal and full notes
+\newboolean{skeletal} %
+\ifdefined\student %Checks to see if this file is called with the student switch defined
+	\setboolean{skeletal}{true}%Set true for skeletal notes
+\else
+	\setboolean{skeletal}{false}% Set to false for full notes, 
+\fi
+
+%\def\accessible{true}
+%
+% Accessibility change font to sans serif font
+% increase font size?
+%
+\ifdefined\accessible
+%	\RequirePackage{tufte-largeprint}
+	\renewcommand{\familydefault}{\sfdefault}
+	\RequirePackage[cm]{sfmath}
+	\RequirePackage{sectsty}
+	\chapterfont{\sffamily} %% for chapter if you want
+	\sectionfont{\sffamily}
+	\subsectionfont{\sffamily}
+	\renewcommand{\textrm}{\textsf}
+	\renewcommand{\rm}{\sf}
+\fi
+
+
+\newcommand{\pincludegraphics}[3][]{%
+	\ifthenelse{\boolean{skeletal}}{
+	\includegraphics[#1]{#2}
+	}{
+	\includegraphics[#1]{#3}
+	}}
+	
+
+
+
+\ifthenelse{\boolean{skeletal}}{%
+\newcommand{\p}[1]{\textcolor{white}{#1}}
+\newcommand{\pfig}{true}
+}{%
+\newcommand{\p}[1]{\textcolor{red}{#1}}
+\newcommand{\pfig}{false}
+}
+\newcommand{\pcaption}[1]{\caption{#1 \p{ICF}}} 
+%Define \pcaption for adding ICF (In Class Figure) tag to text so that instructor knows 
+%if a diagram is not in the skeletal notes. Not really useful, but left in for legacy
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%
+%. mybox (not numbered)
+%  examplebox (with numbering)
+%%%%%%%%%%%%%%%%%%
+\RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{multicol}
+
+\definecolor{LightOcean}{RGB}{81, 147, 229 }
+\definecolor{DeepOcean}{RGB}{51, 131, 229}
+\newcounter{myboxcount}   
+
+\newcommand{\pagewidth}{\textwidth+\marginparwidth+10mm}
+
+\newtcolorbox[auto counter, number within=chapter]{mybox}[2][]{%
+%    float, 
+%    floatplacement=h!,
+    enhanced, 
+%    colback=LightOcean!10, 
+    colback=white,
+    colframe=DeepOcean,
+    %show bounding box,
+    notitle,
+    %grow to right by=\marginparsep+\marginparwidth,%,-15mm,
+    toggle enlargement=evenpage,
+    breakable,fonttitle=\bfseries, 
+    title= \Large{\textbf{#2}},
+    #1
+}
+
+\newtcolorbox[auto counter,number within=chapter]{examplebox}[2][]{%
+ %   float, 
+  %  floatplacement=h!,
+    breakable,
+    enhanced,
+    colback=white,
+    fonttitle=\bfseries, 
+    title=\Large{\textbf{Example}}~\thetcbcounter:~ #2,
+    #1
+}
+
+\newtcolorbox[auto counter,number within=chapter]{exercisebox}[2][]{%
+ %   float, 
+  %  floatplacement=h!,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=Red,
+    fonttitle=\bfseries, 
+    title=\Large{\textbf{Exercise}}~\thetcbcounter:~ #2,
+    #1
+}
+
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+
+\RequirePackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+\RequirePackage{mathtools, bm}
+\RequirePackage{amsfonts}
+
+\def\bv{ {\bm v} }
+\def\be{ {\bm e} }
+\def\bp{ {\bm p} }
+
+
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\RequirePackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+\begin{fullwidth}
+\sffamily\large
+\begin{doublespace}
+\noindent\allcaps{#1}\\ % The quote
+\noindent\allcaps{#2} % The author
+\end{doublespace}
+\end{fullwidth}
+}
+%\RequirePackage[allfiguresdraft]{draftfigure}
+
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+
+
+% This set of options will make anything in \p{...} be red text including equation parts
+% and will show figures with option draft=\pfig 
+%\newcommand{\p}[1]{\textcolor{red}{#1}}
+%\newcommand{\pfig}{false}
+
+\RequirePackage{wallpaper}
+\RequirePackage{calc}
+
+
+\RequirePackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+\newcommand{\undertitle}[1]{
+  \gdef\undertitle{#1}
+}
+
+\newcommand{\overtitle}[1]{
+  \gdef\overtitle{#1}
+}
+
+\newboolean{@logobool}
+\newlength{\logoshift}
+\newcommand{\logo}[2][0cm]{%
+	\gdef\thelogo{#2}
+	\setboolean{@logobool}{true}
+	\setlength{\logoshift}{-0.75cm}
+	\addtolength{\logoshift}{#1}
+}%
+
+\newboolean{@coverimagebool}
+\newcommand{\coverimage}[2][1]{%
+	\gdef\thecoverimage{#2}
+	\setboolean{@coverimagebool}{true}
+	\def\coverscale{#1}
+	%\setlength\wpXoffset{0cm}
+	%\setlength{\wpYoffset}{0cm}
+}%
+
+
+
+
+
+\renewcommand{\maketitlepage}{%
+\cleardoublepage%
+  {%
+  \sffamily%
+  \begin{fullwidth}%
+  \fontsize{18}{20}\selectfont\par\noindent\textcolor{darkgray}{\allcaps{\thanklessauthor}}%
+   %\vspace{0.2cm} 
+   \ifthenelse{\boolean{@logobool}}{
+  \hfill \makebox[0cm][r]{\raisebox{\logoshift}{\includegraphics[height=2cm]{\thelogo}}}%
+  }{}
+  \vspace{11.5pc}%
+  %textcolor was darkgray
+  \fontsize{18}{40}\selectfont\par\noindent\textcolor{black}{\allcaps{\overtitle}}%
+  \fontsize{36}{40}\selectfont\par\noindent\textcolor{black}{\allcaps{\thanklesstitle}}%
+  \fontsize{18}{40}\selectfont\par\noindent\textcolor{black}{\allcaps{\undertitle}}
+  \ifthenelse{\boolean{@coverimagebool}}{%
+ 	 \ThisCenterWallPaper{\coverscale}{\thecoverimage}
+  }{}%
+  \vspace{0.5in}
+  \vfill
+  \fontsize{14}{16}\selectfont\par\noindent\allcaps{\thanklesspublisher}%
+  \end{fullwidth}%
+  }
+  \thispagestyle{empty}%
+  \clearpage%
+}
+
+%
+% redefine \emph so that it is bold and italic
+%
+
+\let\emph\relax % there's no \RedeclareTextFontCommand
+\DeclareTextFontCommand{\emph}{\bfseries\em}
+
+%
+% Make sure the equationsnumbers are in black
+%
+
+\makeatletter
+\patchcmd{\math@cr@@@align}% <cmd>
+  {\place@tag}% <search>
+  {\bgroup\textcolor{black}{\place@tag}\egroup}% <replace>
+  {}{}% <success><failure>
+\makeatother
+
