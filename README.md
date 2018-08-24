@@ -54,7 +54,9 @@ Note that the class options override the \defs above  if they conflict.
 
        \pincludegraphics{unannotated_path}{annotated_path} places graphics
        that are either "unannotated_path" for "skeletal" version, or
-       "annotated_path" for the "full" version.
+       "annotated_path" for the "full" version. IT IS RECOMMENDED THAT THESE
+       HAVE THE SAME BOUNDING BOXES/SIZE in order for the skeletal version
+       to maintain the same layout as the full version. 
 
 # Boxes
 
