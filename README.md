@@ -5,7 +5,7 @@ David Tsang - D.Tsang@soton.ac.uk
 2018/08/24
 
 This is a template for skeletal class notes based on the tufte-book class.
-Copy TsangNotes.sty and TsangNotes.cls into your local LaTeX directory
+Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 
      \documentclass[options..]{TsangNotes}
 
