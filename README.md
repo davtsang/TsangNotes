@@ -9,6 +9,8 @@ Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 
      \documentclass[options..]{TsangNotes}
 
+(see also Dave's Problem Set template: https://github.com/davtsang/TsangPS)
+
 
 # Class Options:
 
