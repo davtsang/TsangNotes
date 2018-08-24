@@ -42,6 +42,10 @@ Note that the class options override the \defs above  if they conflict.
        \coverimage[SCALE]{PATH} sets the background cover image for the
        title page. SCALE (with fixed aspect ratio) by a fraction of the
        page width
+       
+       \overtitle{OVERTITLE} sets the overtitle for the cover page
+       \title{TITLE} sets the title for the cover page
+       \undertitle{UNDERTITLE} sets the undertitle for the cover page
 
        \p{...} hides the text if the notes are the "skeletal" version
        (by setting text color to white). You can use this surrounding
