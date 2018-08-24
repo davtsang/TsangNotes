@@ -33,7 +33,7 @@ If no TsangNotes class specific options are set, it will default to the "full" b
 
 Note that the class options override the \defs above  if they conflict.
 
-#Class Commands:
+# Class Commands:
 
        \logo[offset]{PATH} sets the path to the logo file to load next to
        the title you can use the offset in length units (cm, pts etc)
