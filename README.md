@@ -23,7 +23,13 @@ Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 	       (except for align environment equation numbers).
 	       Also uses annotated image from \pincludegraphics{...}{...}
 
-	accessible : sets all the text to sans serif, including equations
+	accessible : sets all the text to sans serif, including equations, also
+	             puts a line in the margin between the main text and the
+		     marginal text.
+		     It is recommended that you set the papersize to b5, then print
+		     to 120% in order to make the fonts bigger for accessibilty
+		     (The tufte-book fonts don't scale well unless you decide to use
+		     XeTeX)
 
 All other options will be passed to tufte-book (e.g. the ones for UK notes are usually "a4paper, openany, notoc")
 
