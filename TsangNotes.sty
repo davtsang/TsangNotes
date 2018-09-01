@@ -15,7 +15,7 @@
 \RequirePackage{subfig} %needed to horizontally stack figures
 \RequirePackage{cancel} %packaged needed for cancelto arrows
 \RequirePackage{etoolbox}
-
+\RequirePackage{amsmath}
 
 %%%%%%%%%%%%%%%
 % This is where we switch to skeletal
@@ -33,6 +33,15 @@
 % Accessibility change font to sans serif font
 % increase font size?
 %
+
+%
+% redefine \emph so that it is bold and italic
+%
+
+\let\emph\relax % there's no \RedeclareTextFontCommand
+\DeclareTextFontCommand{\emph}{\bfseries\em}
+\newboolean{drawline}
+
 \ifdefined\accessible
 %	\RequirePackage{tufte-largeprint}
 	\renewcommand{\familydefault}{\sfdefault}
@@ -43,7 +52,62 @@
 	\subsectionfont{\sffamily}
 	\renewcommand{\textrm}{\textsf}
 	\renewcommand{\rm}{\sf}
+	\renewcommand{\textsc}[1]{#1}
+	\let\emph\relax % there's no \RedeclareTextFontCommand
+	\DeclareTextFontCommand{\emph}{\bfseries}
+	
+	%
+	%
+	
+\def\bottommargin{\paperheight - \topmargin - \textheight - \headheight - \headsep - 1in - \voffset}
+\def\toptotalheight{\paperheight - \topmargin - \headheight - \headsep - 1in - \voffset}
+
+\def\rightlength{\paperwidth
+  - \marginparwidth +\marginparsep
+- 1in - \hoffset}
+
+\makeatletter
+\newcommand{\nomarginbar}{\let\ESO@HookIIBG\@empty}
+\makeatother
+
+\newcommand{\thisisfullsize}{\path (0,0) --  (\paperwidth,\paperheight);}
+
+
+\newcommand\RightBar{% 
+  \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+      \vfill
+      \centering
+      \begin{tikzpicture}
+        \thisisfullsize
+        \draw[line width=0.4pt] (\rightlength,0.92*\bottommargin) -- (\rightlength,1.04*\toptotalheight);
+      \end{tikzpicture}
+      \vfill
+  }}}
+
+\setboolean{drawline}{false}
+% %%% Use this in one-side documents
+ \AtBeginShipout{%
+  \ifthenelse{\boolean{drawline}}{
+   \AddToShipoutPictureBG*{\RightBar}%
+   }{}
+ }
+
+ 
 \fi
+\ifdefined\accessible\RequirePackage{mdframed}\fi
+
+\newenvironment{fullfigure}[1][htbp]{
+\begin{figure*}[#1]
+\ifdefined\accessible
+\begin{mdframed}[backgroundcolor=white, linecolor=white]
+\fi}
+{
+\ifdefined\accessible
+\end{mdframed}
+\fi
+\end{figure*}}
+
 
 
 \newcommand{\pincludegraphics}[3][]{%
@@ -53,6 +117,40 @@
 	\includegraphics[#1]{#3}
 	}}
 	
+
+%\usepackage{ifxetex}
+%\ifxetex
+%  \RequirePackage[no-math]{fontspec}
+%  \renewcommand{\textls}[2][5]{%
+%    \begingroup\addfontfeatures{LetterSpace=#1}#2\endgroup
+%  }
+%  \renewcommand{\allcapsspacing}[1]{\textls[15]{#1}}
+%  \renewcommand{\smallcapsspacing}[1]{\textls[10]{#1}}
+%  \renewcommand{\allcaps}[1]{\textls[15]{\MakeTextUppercase{#1}}}
+%  \renewcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}
+%  \renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}
+%  \RequirePackage{mathspec}
+%  \makeatletter % undo the wrong changes made by mathspec
+%	\let\RequirePackage\original@RequirePackage
+%	\let\usepackage\RequirePackage
+%  \makeatother
+%  \setmainfont{Verdana}
+%  \setsansfont[Scale=MatchLowercase]{Verdana}
+%  \setmathfont(Digits,Latin,Greek)[Scale=MatchLowercase]{Asana Math}
+%  \setmathrm[Scale=MatchLowercase]{Asana Math}
+%\fi
+
+\makeatletter
+\def\tuftebreak{%
+  \if@nobreak\else
+    \par
+    \ifdim\lastskip<\tufteskipamount
+      \removelastskip \penalty -1000
+      \tufteskip
+    \fi
+  \fi
+}
+\makeatother
 
 
 
@@ -220,12 +318,22 @@
   \clearpage%
 }
 
-%
-% redefine \emph so that it is bold and italic
-%
+\let\oldfrontmatter\frontmatter
+\def\frontmatter{
+\ifdefined\accessible\setboolean{drawline}{false}\fi
+\oldfrontmatter}
 
-\let\emph\relax % there's no \RedeclareTextFontCommand
-\DeclareTextFontCommand{\emph}{\bfseries\em}
+\let\oldmainmatter\mainmatter
+\def\mainmatter{
+\ifdefined\accessible\setboolean{drawline}{true}\fi
+\oldmainmatter}
+
+
+\let\oldbackmatter\backmatter
+\def\backmatter{
+\ifdefined\accessible\setboolean{drawline}{false}\fi
+\oldbackmatter}
+
 
 %
 % Make sure the equationsnumbers are in black
@@ -238,6 +346,31 @@
   {}{}% <success><failure>
 \makeatother
 
+\newcommand{\partcover}[2][1]{
+\def\thepartcover{#2}
+\def\partcoverscale{#1}
+}
+
 \setcounter{secnumdepth}{2}
 
+\renewcommand{\part}[1]{%
+  \ifdefined\accessible\setboolean{drawline}{false}\fi
+  \par\break % Page break
+    \thispagestyle{empty}
+  {\sffamily
+   \begin{fullwidth}
+  \refstepcounter{part}% Next part
+  \topskip0pt
+  \vspace*{\fill}
+  \fontsize{18}{18}\selectfont\par\noindent\textcolor{black}{\allcaps{Part \thepart:}}
+  \fontsize{36}{40}\selectfont\par\noindent\textcolor{black}{\allcaps{#1}}
+    \vspace*{\fill}
+  % Some text
+   \ThisCenterWallPaper{\partcoverscale}{\thepartcover}
+  \vfill
+  \end{fullwidth}
+   \par\clearpage
+    }
+    \ifdefined\accessible\setboolean{drawline}{true}\fi
+}
 
