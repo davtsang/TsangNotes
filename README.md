@@ -22,6 +22,7 @@ Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 	full : force full notes, sets text color of things in \p{...} to red
 	       (except for align environment equation numbers).
 	       Also uses annotated image from \pincludegraphics{...}{...}
+	       (also sets flag \pfig=true for use with the draftfigure package)
 
 	accessible : sets all the text to sans serif, including equations, also
 	             puts a line in the margin between the main text and the
@@ -43,8 +44,8 @@ Note that the class options override the \defs above  if they conflict.
 
 # Class Commands:
 
-       \logo[offset]{PATH} sets the path to the logo file to load next to
-       the title you can use the offset in length units (cm, pts etc)
+       \logo[OFFSET]{PATH} sets the path to the logo file to load next to
+       the title you can use the OFFSET in length units (cm, pts etc)
        in order to shift the image up or down
 
        \coverimage[SCALE]{PATH} sets the background cover image for the
@@ -64,9 +65,9 @@ Note that the class options override the \defs above  if they conflict.
        entire align environments, but the equation numbers will stay black.
        In the "full" version everything in \p{...} will appear red. 
 
-       \pincludegraphics{unannotated_path}{annotated_path} places graphics
-       that are either "unannotated_path" for "skeletal" version, or
-       "annotated_path" for the "full" version. IT IS RECOMMENDED THAT THESE
+       \pincludegraphics{UNANNOTATED_PATH}{ANNOTATED_PATH} places graphics
+       that are either UNANNOTATED_PATH for "skeletal" version, or
+       ANNOTATED_PATH for the "full" version. IT IS RECOMMENDED THAT THESE
        HAVE THE SAME BOUNDING BOXES/SIZE in order for the skeletal version
        to maintain the same layout as the full version.
        (If you would prefer to have a blank frame to replace the figure with,
