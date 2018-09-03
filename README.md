@@ -86,10 +86,10 @@ Note that the class options override the \defs above  if they conflict.
 
        for figures that should appear only in the full version.)
 
-	\begin{fullfigure}...\end{fullfigure} wraps the figure* environment to 
-	provide a white coloured background (mdboxed) box with no frame. This is 
-	only useful for the accessible option as it prevents the margin line from 
-	showing through transparent graphics
+       \begin{fullfigure}...\end{fullfigure} wraps the figure* environment to 
+       provide a white coloured background (mdboxed) box with no frame. This is 
+       only useful for the accessible option as it prevents the margin line from 
+       showing through transparent graphics
 
 ## tufte-book class commands
 	
