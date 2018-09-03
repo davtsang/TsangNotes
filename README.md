@@ -55,6 +55,10 @@ Note that the class options override the \defs above  if they conflict.
        \title{TITLE} sets the title for the cover page
        \undertitle{UNDERTITLE} sets the undertitle for the cover page
 
+       \partcover[SCALE]{PATH} sets the background cover image for the
+       part title page. Useful for multipart courses. If no partcover
+       is set, it will \part{...} will just have a white background.
+
        \p{...} hides the text if the notes are the "skeletal" version
        (by setting text color to white). You can use this surrounding
        entire align environments, but the equation numbers will stay black.
@@ -64,7 +68,20 @@ Note that the class options override the \defs above  if they conflict.
        that are either "unannotated_path" for "skeletal" version, or
        "annotated_path" for the "full" version. IT IS RECOMMENDED THAT THESE
        HAVE THE SAME BOUNDING BOXES/SIZE in order for the skeletal version
-       to maintain the same layout as the full version. 
+       to maintain the same layout as the full version.
+       (If you would prefer to have a blank frame to replace the figure with,
+       please use the the draftfigure package intead
+       
+       	      \usepackage[allfiguresdraft]{draftfig})
+
+       using
+	      \includegraphics[draft=false]
+	      
+       for figures that should always appear and
+       
+       	      \includegraphics[draft=\pfig]
+
+       for figures that should appear only in the full version. 
 
 ## tufte-book class commands
 	
