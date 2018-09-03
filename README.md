@@ -85,7 +85,8 @@ emphasis.
 	
 	\end{mybox}
 
-This provides an unnumbered box with heading: "TITLE" with a blue/ocean coloured border. The box has width \textwidth by default. Set this to \pagewidth if you want it to span the page. 
+This provides an unnumbered box with heading: "TITLE" with a blue/ocean coloured border. The box has width \textwidth by default. Set this to \pagewidth if you want it to span the page.
+![mybox](mybox.png "mybox screenshot")
 
 ## examplebox
 
@@ -97,7 +98,7 @@ This provides an unnumbered box with heading: "TITLE" with a blue/ocean coloured
 
 This provides a numbered example box with heading: "Example CHAP.EXNUM: TITLE"
 that is by default has width \textwidth. Set this to \pagewidth if you want it to span the page.
-
+![examplebox](examplebox.png "examplebox screenshot")
 
 ## exercisebox
 
@@ -109,6 +110,7 @@ that is by default has width \textwidth. Set this to \pagewidth if you want it t
 
 This provides a numbered example box with heading: "Exercise CHAP.EXERCISENUM: TITLE"
 that is by default has width \textwidth. Set this to \pagewidth if you want it to span the page. This box has a red border.
+![exercisebox](exercisebox.png "exercisebox screenshot")
 
 # Samples:
 
