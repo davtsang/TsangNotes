@@ -82,7 +82,7 @@ Note that the class options override the \defs above  if they conflict.
        
        		\includegraphics[draft=\pfig]
 
-       for figures that should appear only in the full version. 
+       for figures that should appear only in the full version.)
 
 ## tufte-book class commands
 	
