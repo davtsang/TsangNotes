@@ -26,8 +26,9 @@ Copy "TsangNotes.sty" and "TsangNotes.cls" into your local LaTeX directory.
 
 	accessible : sets all the text to sans serif, including equations, also
 	             puts a line in the margin between the main text and the
-		     marginal text.
-		     It is recommended that you set the papersize to b5, then print
+		     marginal text. \frontmatter and \backmatter have the margin
+		     line removed, while \mainmatter turns it on. 
+		     It is recommended that you set the papersize to b5paper, then print
 		     to 120% in order to make the fonts bigger for accessibilty
 		     (The tufte-book fonts don't scale well unless you decide to use
 		     XeTeX)
@@ -84,6 +85,11 @@ Note that the class options override the \defs above  if they conflict.
        		\includegraphics[draft=\pfig]
 
        for figures that should appear only in the full version.)
+
+	\begin{fullfigure}...\end{fullfigure} wraps the figure* environment to 
+	provide a white coloured background (mdboxed) box with no frame. This is 
+	only useful for the accessible option as it prevents the margin line from 
+	showing through transparent graphics
 
 ## tufte-book class commands
 	
