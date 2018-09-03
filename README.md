@@ -70,16 +70,17 @@ Note that the class options override the \defs above  if they conflict.
        HAVE THE SAME BOUNDING BOXES/SIZE in order for the skeletal version
        to maintain the same layout as the full version.
        (If you would prefer to have a blank frame to replace the figure with,
-       please use the the draftfigure package intead
+       please use the the draftfigure package instead
        
-       	      \usepackage[allfiguresdraft]{draftfig})
+		\usepackage[allfiguresdraft]{draftfig})
 
        using
-	      \includegraphics[draft=false]
+       
+       		\includegraphics[draft=false]
 	      
        for figures that should always appear and
        
-       	      \includegraphics[draft=\pfig]
+       		\includegraphics[draft=\pfig]
 
        for figures that should appear only in the full version. 
 
