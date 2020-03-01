@@ -158,4 +158,4 @@ that is by default has width \textwidth. Set this to \pagewidth if you want it t
 
 ![accessible notes (full) sample](accessible_screenshot.png "accessible (full) example screenshot")
 
-The example text and figures are  © 2018 David Tsang. Cover image "guitarstrings.jpg" modified from "12 String Theory" by Paul VanDerWerf (http://www.flickr.com/photos/pavdw/23500305076/), licensed under a Creative Commons Attribution 2.0 License (http://creativecommons. org/licenses/by/2.0/legalcode). The University of Bath logo is a trademark of the University of Bath. 
+The example text and figures are  © 2018 David Tsang. Cover image "guitarstrings.jpg" modified from "12 String Theory" by Paul VanDerWerf (http://www.flickr.com/photos/pavdw/23500305076/), licensed under a Creative Commons Attribution 2.0 License (http://creativecommons.org/licenses/by/2.0/legalcode). The University of Bath logo is a trademark of the University of Bath. 
